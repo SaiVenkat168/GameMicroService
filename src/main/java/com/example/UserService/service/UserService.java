@@ -8,6 +8,7 @@ import com.example.UserService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.security.sasl.AuthenticationException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -111,5 +112,12 @@ public class UserService
         {
             throw new RuntimeException("Unable to get user");
         }
+    }
+
+    public void isAuthorized(String usr,String pass)
+    {
+        if(usr.equals("root") && pass.equals("root@2024"))
+            return ;
+        throw new RuntimeException("Found unAuthorized to access this api");
     }
 }
